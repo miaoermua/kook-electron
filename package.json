@@ -3,50 +3,17 @@
   "version": "0.96.1",
   "description": "KOOK Electron App",
   "main": "main.js",
-  "author": "miaoermua <miaoermua@gmail.com>",
+  "author": {
+    "name": "miaoermua ",
+    "email": "miaoermua@gmail.com"
+  },
   "homepage": "https://www.kookapp.cn/app/",
   "scripts": {
     "start": "electron .",
-    "build": "electron-builder"
-  },
-  "build": {
-    "appId": "cn.kookapp.app",
-    "productName": "kook-electron",
-    "directories": {
-      "output": "dist"
-    },
-    "files": [
-      "**/*"
-    ],
-    "linux": {
-      "target": [
-        "AppImage",
-        "deb",
-        "pacman"
-      ],
-      "icon": "icon.png",
-      "category": "Network"
-    },
-    "win": {
-      "target": "nsis",
-      "icon": "icon.ico"
-    },
-    "mac": {
-      "target": "dmg",
-      "icon": "icon.icns"
-    }
+    "build": "node build.js"
   },
   "devDependencies": {
+    "electron": "^37.3.1",
     "electron-builder": "^26.0.12"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/miaoermua/kook-electron.git"
-  },
-  "keywords": [],
-  "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/miaoermua/kook-electron/issues"
   }
 }
