@@ -17,9 +17,12 @@ provides=($pkgname)
 options=(!emptydirs)
 
 source=(
-    "kook-electron-$pkgver.pkg.tar.zst"
+    "kook-electron-$pkgver.tar.gz"
+    "main.js"
+    "package.json"
+    "icon.png"
 )
-sha256sums=('226ce50a47bff391cb294c410b98309f3b419e95dcbde66554ae872d7ab6db41')
+sha256sums=('SKIP' 'SKIP' 'SKIP' 'SKIP')
 
 package() {
     _datadir="/usr/lib/$pkgname"

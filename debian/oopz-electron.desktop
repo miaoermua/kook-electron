@@ -1,9 +1,0 @@
-[Desktop Entry]
-Name=KOOK
-Comment=KOOK Electron App
-Exec=kook-electron
-Icon=kook-electron
-Terminal=false
-Type=Application
-Categories=Network;Chat;
-StartupWMClass=kook-electron
