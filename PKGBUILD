@@ -1,6 +1,6 @@
 # Maintainer: miaoermua <miaoermua@gmail.com>
 pkgname=kook-electron
-pkgver=1.2.9
+pkgver=0.96.1
 pkgrel=1
 pkgdesc="KOOK Electron App (uses system electron; requires v34.5.8+)"
 arch=('x86_64')
