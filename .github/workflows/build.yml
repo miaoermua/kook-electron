@@ -1,0 +1,101 @@
+name: Build Linux Packages
+
+on:
+  push:
+    tags:
+      - 'v*'
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Build Electron app
+      run: npm run build
+
+    - name: Setup Debian build environment
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential devscripts debhelper
+
+    - name: Build Debian package
+      run: |
+        # 复制构建产物到 debian 目录
+        cp -r dist/linux-unpacked/* debian/
+        
+        # 构建 deb 包
+        cd debian
+        dpkg-buildpackage -us -uc -b
+        
+        # 移动生成的 deb 文件
+        mv ../kook-electron_*.deb ../dist/
+
+    - name: Setup Arch build environment
+      run: |
+        # 安装 Docker 来构建 Arch 包
+        sudo apt-get update
+        sudo apt-get install -y docker.io
+        sudo systemctl start docker
+        sudo usermod -aG docker $USER
+
+    - name: Build Arch package with Docker
+      run: |
+        # 创建临时目录
+        mkdir -p arch-build
+        
+        # 复制必要文件
+        cp PKGBUILD arch-build/
+        cp main.js arch-build/
+        cp package.json arch-build/
+        cp icon.png arch-build/
+        cp dist/kook-electron-*.tar.gz arch-build/kook-electron-1.2.9.tar.gz
+        
+        # 使用 Arch Linux Docker 镜像构建
+        docker run --rm -v $(pwd)/arch-build:/build -w /build archlinux:latest bash -c "
+          pacman -Syu --noconfirm base-devel git &&
+          makepkg -r &&
+          cp *.pkg.tar.zst /build/
+        "
+        
+        # 移动生成的 tar.zst 文件
+        mv arch-build/*.pkg.tar.zst dist/
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: linux-packages
+        path: |
+          dist/*.AppImage
+          dist/*.deb
+          dist/*.pkg.tar.zst
+          dist/*.tar.gz
+        retention-days: 30
+
+    - name: Create Release (on tag)
+      if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          dist/*.AppImage
+          dist/*.deb
+          dist/*.pkg.tar.zst
+          dist/*.tar.gz
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
