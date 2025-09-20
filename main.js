@@ -7,7 +7,7 @@ function createWindow() {
     icon: nativeImage.createFromPath(__dirname + '/icon.png'),
     autoHideMenuBar: true,  // 隐藏菜单栏
     webPreferences: {
-      partition: 'persist:oopz',
+      partition: 'persist:kook',
       nodeIntegration: false,    // 禁止网页直接访问 Node
       contextIsolation: true,    // 隔离网页和主进程
       enableRemoteModule: false, // 禁用 remote 模块
