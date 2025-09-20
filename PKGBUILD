@@ -17,7 +17,7 @@ provides=($pkgname)
 options=(!emptydirs)
 
 source=(
-    "kook-electron-$pkgver.pkg.tar.zst"
+    "https://github.com/miaoermua/kook-electron/releases/download/v$pkgver-$pkgrel/kook-electron-$pkgver-$pkgrel-$arch.pkg.tar.zst"
 )
 sha256sums=('226ce50a47bff391cb294c410b98309f3b419e95dcbde66554ae872d7ab6db41')
 

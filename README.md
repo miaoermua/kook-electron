@@ -9,21 +9,25 @@
 
 ## 构建应用
 
-需要安装 nodejs 环境，并且 clone 本项目
+需要安装 nodejs 环境，并且 clone 本项目，并且进入项目目录
 
 ```bash
+npm install
 npm run build
 ```
 
-构建完成将 tar.gz 复制出来让 pkgbuild 进行构建 （测试版本）
+构建完成将 tar.gz 复制出来让 pkgbuild 进行构建 （测试版本 [PKGBUILD.local](https://github.com/miaoermua/kook-electron/blob/main/PKGBUILD.local)）
 
 ```bash
+cp -f PKGBUILD.local PKGBUILD
 rm -rf pkg/ src/ *.pkg.tar.zst
 cp dist/kook-electron-0.96.1.tar.gz .
 makepkg -r
 ```
 
-## 安装
+## 直接安装
+
+无需构建直接下载包进行安装
 
 Archlinux(Arch 系):
 
