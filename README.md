@@ -15,6 +15,14 @@
 npm run build
 ```
 
+构建完成将 tar.gz 复制出来让 pkgbuild 进行构建 （测试版本）
+
+```bash
+rm -rf pkg/ src/ *.pkg.tar.zst
+cp dist/kook-electron-0.96.1.tar.gz .
+makepkg -r
+```
+
 ## 安装
 
 Archlinux(Arch 系):
