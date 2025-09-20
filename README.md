@@ -12,8 +12,6 @@
 需要安装 nodejs 环境，并且 clone 本项目
 
 ```bash
-npm init -y
-npm install electron --save-dev
 npm run build
 ```
 
@@ -24,7 +22,7 @@ Archlinux(Arch 系):
 > 待稳定后上传 AUR
 
 ```bash
-wget https://github.com/miaoermua/kook-electron/releases/download/v0.96.1/kook-electron-0.96.1.pkg.tar.zst
+wget https://github.com/miaoermua/kook-electron/releases/download/v0.96.1-1/kook-electron-1.2.9-1-x86_64.pkg.tar.zst
 sudo pacman -U kook*
 ```
 
