@@ -12,8 +12,6 @@
 需要安装 nodejs 环境，并且 clone 本项目
 
 ```bash
-npm init -y
-npm install electron --save-dev
 npm run build
 ```
 
