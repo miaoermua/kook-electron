@@ -1,6 +1,10 @@
 # kook-electron
 使用 electron 打包的 KOOK Linux 客户端
 
+缺点：在 Gnome 桌面环境下 dock 栏无法显示正确图标，.desktop 则正常，可能和 electron 版本有关。
+
+无法测试非 archlinux 以外的桌面系统，请自行测试并反馈 issues。
+
 版权声明，本项目只是打包网页版 KOOK，并无做其他修改，服务和版权提供商依旧为: 北京逍遥一下科技有限公司
 
 <img width="1322" height="959" alt="截图 2025-08-22 20-58-28" src="https://github.com/user-attachments/assets/d2d88b24-016d-49f7-85ab-b3cf676122b6" />
