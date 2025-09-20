@@ -1,7 +1,7 @@
 # Maintainer: miaoermua <miaoermua@gmail.com>
 pkgname=kook-electron
 pkgver=0.96.1
-pkgrel=1
+pkgrel=2
 pkgdesc="KOOK Electron App (uses system electron; requires v34.5.8+)"
 arch=('x86_64')
 url="https://www.kookapp.cn/app/login/"
@@ -19,7 +19,7 @@ options=(!emptydirs)
 source=(
     "https://github.com/miaoermua/kook-electron/releases/download/v$pkgver-$pkgrel/kook-electron-$pkgver-$pkgrel-$arch.pkg.tar.zst"
 )
-sha256sums=('226ce50a47bff391cb294c410b98309f3b419e95dcbde66554ae872d7ab6db41')
+sha256sums=('33c5f0d4562788a247c02c03de47c79572d4b3e1b20a624880caf2dad8c91b8e')
 
 package() {
     _datadir="/usr/lib/$pkgname"

@@ -16,6 +16,7 @@ build({
     linux: {
       target: [
         'AppImage',
+        'deb',
         'tar.gz'
       ],
       icon: "icon.png",
