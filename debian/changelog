@@ -1,0 +1,8 @@
+kook-electron (1.2.9-1) unstable; urgency=medium
+
+  * Initial Debian package release
+  * Uses system Electron runtime (prefers electron37 if available)
+  * Reduces installation size by sharing Electron with other apps
+  * Fixed webPreferences syntax in main.js
+
+ -- miaoermua <miaoermua@gmail.com>  Thu, 21 Dec 2023 12:00:00 +0800

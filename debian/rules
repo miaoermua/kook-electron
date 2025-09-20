@@ -1,0 +1,43 @@
+#!/usr/bin/make -f
+
+%:
+	dh $@
+
+override_dh_auto_build:
+	# 不需要构建，只是打包应用文件
+
+override_dh_auto_install:
+	# 创建目录
+	mkdir -p debian/kook-electron/usr/lib/kook-electron
+	mkdir -p debian/kook-electron/usr/bin
+	mkdir -p debian/kook-electron/usr/share/applications
+	mkdir -p debian/kook-electron/usr/share/icons/hicolor/256x256/apps
+	
+	# 复制应用文件
+	cp main.js package.json debian/kook-electron/usr/lib/kook-electron/
+	cp icon.png debian/kook-electron/usr/share/icons/hicolor/256x256/apps/kook-electron.png
+	
+	# 创建启动脚本
+	echo '#!/bin/sh' > debian/kook-electron/usr/bin/kook-electron
+	echo 'APP_DIR="/usr/lib/kook-electron"' >> debian/kook-electron/usr/bin/kook-electron
+	echo 'cd "$$APP_DIR" || exit 1' >> debian/kook-electron/usr/bin/kook-electron
+	echo '' >> debian/kook-electron/usr/bin/kook-electron
+	echo '# 允许用户通过环境变量覆盖 Electron 可执行文件' >> debian/kook-electron/usr/bin/kook-electron
+	echo 'if [ -n "$$ELECTRON_PATH" ] && [ -x "$$ELECTRON_PATH" ]; then' >> debian/kook-electron/usr/bin/kook-electron
+	echo '  ELECTRON_BIN="$$ELECTRON_PATH"' >> debian/kook-electron/usr/bin/kook-electron
+	echo 'elif command -v electron37 >/dev/null 2>&1; then' >> debian/kook-electron/usr/bin/kook-electron
+	echo '  ELECTRON_BIN="$$(command -v electron37)"' >> debian/kook-electron/usr/bin/kook-electron
+	echo 'elif command -v electron >/dev/null 2>&1; then' >> debian/kook-electron/usr/bin/kook-electron
+	echo '  ELECTRON_BIN="$$(command -v electron)"' >> debian/kook-electron/usr/bin/kook-electron
+	echo 'else' >> debian/kook-electron/usr/bin/kook-electron
+	echo '  echo "Electron runtime not found. Please install electron or electron37." >&2' >> debian/kook-electron/usr/bin/kook-electron
+	echo '  exit 127' >> debian/kook-electron/usr/bin/kook-electron
+	echo 'fi' >> debian/kook-electron/usr/bin/kook-electron
+	echo '' >> debian/kook-electron/usr/bin/kook-electron
+	echo 'echo "[Tip] 首次加载资源可能需要 10s 左右"' >> debian/kook-electron/usr/bin/kook-electron
+	echo 'exec "$$ELECTRON_BIN" main.js "$$@"' >> debian/kook-electron/usr/bin/kook-electron
+	
+	chmod +x debian/kook-electron/usr/bin/kook-electron
+
+override_dh_auto_clean:
+	# 清理构建文件

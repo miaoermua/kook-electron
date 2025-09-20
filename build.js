@@ -3,8 +3,8 @@ const { build } = require('electron-builder');
 
 build({
   config: {
-    appId: "cn.oopz.app",
-    productName: "oopz-electron",
+    appId: "cn.kook.app",
+    productName: "kook-electron",
     directories: {
       output: "dist"
     },
@@ -14,7 +14,10 @@ build({
       "icon.png"
     ],
     linux: {
-      target: 'tar.gz',
+      target: [
+        'AppImage',
+        'tar.gz'
+      ],
       icon: "icon.png",
       category: "Network"
     }

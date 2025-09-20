@@ -1,13 +1,13 @@
 {
   "name": "kook-electron",
-  "version": "0.96.1",
+  "version": "v1.2.9",
   "description": "KOOK Electron App",
   "main": "main.js",
   "author": {
     "name": "miaoermua ",
     "email": "miaoermua@gmail.com"
   },
-  "homepage": "https://www.kookapp.cn/app/",
+  "homepage": "https://www.kookapp.cn/app/login/",
   "scripts": {
     "start": "electron .",
     "build": "node build.js"

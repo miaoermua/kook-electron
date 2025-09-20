@@ -1,0 +1,16 @@
+Source: kook-electron
+Section: net
+Priority: optional
+Maintainer: miaoermua <miaoermua@gmail.com>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.6.0
+Homepage: https://www.kookapp.cn/app
+Vcs-Git: https://github.com/miaoermua/kook-electron.git
+
+Package: kook-electron
+Architecture: all
+Depends: ${misc:Depends}, electron (>= 34.5.8) | electron-bin
+Recommends: electron (>= 37) | electron37
+Suggests: electron37
+Description: KOOK Electron App (uses system electron)
+ KOOK 语音软件的 Electron 封装版本，使用系统安装的 Electron 运行时。
